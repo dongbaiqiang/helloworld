@@ -18,6 +18,7 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 public class Server
 {
 	public static Logger log = LoggerFactory.getLogger(Server.class);			//建立日志
+	
 	public static ServerBootstrap bootstrap = new ServerBootstrap();			//建立服务类
     public static EventLoopGroup boss = new NioEventLoopGroup();				//建立boss监听端口请求类似线程池
     public static EventLoopGroup worker = new NioEventLoopGroup();			//建立worker用来处理事件
@@ -25,7 +26,7 @@ public class Server
 	public static void main(String[] args){
         try{
         	bootstrap.group(boss,worker);							//设置线程池，将建好的线程数池传入服务类
-        	bootstrap.channel(NioServerSocketChannel.class);		//设置socket工厂
+        	bootstrap.channel(NioServerSocketChannel.class);		//设置channel管道类型
         	bootstrap.childHandler(new ServerIniter());				//为处理accept客户端的channel中的pipeline添加自定义处理函数
         	
         	bootstrap.option(ChannelOption.SO_BACKLOG, 2048);		//serverSocketchannel的设置，链接缓冲池的大小

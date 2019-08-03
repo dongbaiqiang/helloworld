@@ -37,11 +37,11 @@ public class BusinessThread {
 				if(n == 2){
 					if(arg1.getHeader().getCmdId() == 1000){
 						log.info("Client login request");
-						a.setaccount(arg1.getContent());
+						//a.setaccount(arg1.getContent());
 						MessageFactory MF = new MessageFactory();
 						CreateMessage msg = null;
-						
-						int st = a.run();
+						int st = 1;
+						//int st = a.run();
 						if(st == 0){
 							msg = MF.getMessage("账号错误");
 						}
