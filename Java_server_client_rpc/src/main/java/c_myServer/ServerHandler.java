@@ -21,10 +21,18 @@ public class ServerHandler extends SimpleChannelInboundHandler<MyMessage> {
 			BThread.doSomething(ctx, msg);
 			System.out.println(msg.getContent());
 		}
-		if(msg.getHeader().getMsgId() == 1){
+		
+		
+		if(msg.getHeader().getMsgId() == Type.ECHO.getValue()){
+			BThread.doSomething(ctx, msg);
+		}
+		
+		//调用RPC服务
+		if(msg.getHeader().getMsgId() == Type.ADD.getValue()){
+			System.out.println("有消息:"+msg.getHeader().getMsgId() + msg.getContent());
 			  AddFun service = MyProxy.refer(AddFun.class, "10.2.144.18", 9000);
-		        String result = service.add(msg.getContent());
-		        ctx.writeAndFlush(new MyMessage(new MessageHeader(1,result.length()),result));
+		      String result = service.add(msg.getContent());
+		      ctx.writeAndFlush(new MyMessage(new MessageHeader(1,result.length()),result));
 		}
 		
 	}

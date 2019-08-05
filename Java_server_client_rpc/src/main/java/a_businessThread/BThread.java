@@ -7,6 +7,7 @@ import java.util.concurrent.TimeUnit;
 
 import b_myDecoder.MessageHeader;
 import b_myDecoder.MyMessage;
+import c_myServer.Type;
 import io.netty.channel.ChannelHandlerContext;
 
 
@@ -36,9 +37,9 @@ class MyThread extends Thread{
 	}
 	
 	public void run(){
-		if(arg1.getHeader().getMsgId() == 1){
+		if(arg1.getHeader().getMsgId() == Type.ECHO.getValue()){
 			
-			arg0.writeAndFlush(new MyMessage(new MessageHeader(1,"Hello".length()),"Hello"));
+			arg0.writeAndFlush(new MyMessage(new MessageHeader(Type.ECHO.getValue(),"Hello".length()),"Hello"));
 		}
 	}
 }

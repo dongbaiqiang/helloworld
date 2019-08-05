@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 import b_myDecoder.*;
+import c_myServer.Type;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.EventLoopGroup;
@@ -51,11 +52,11 @@ public class Client {
 //	        		channel.close();
 	        		break;
 	        	}
-	        	MyMessage msg = new MyMessage(new MessageHeader(1,name.length()),name);
+	        	MyMessage msg = new MyMessage(new MessageHeader(Type.ECHO.getValue(),name.length()),name);
 	        	if(name.equals("add")){
 	        		String a=in.nextLine();
 	        		String b=in.nextLine();
-	        		msg = new MyMessage(new MessageHeader(1,name.length()),a + " " + b);
+	        		msg = new MyMessage(new MessageHeader(Type.ADD.getValue(),name.length()),a + " " + b);
 	        	}
 	        	
 	        	

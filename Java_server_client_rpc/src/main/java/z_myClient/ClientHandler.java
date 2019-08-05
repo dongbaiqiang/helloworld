@@ -12,8 +12,8 @@ public class ClientHandler extends SimpleChannelInboundHandler<MyMessage> {
 	protected void messageReceived(ChannelHandlerContext ctx, MyMessage msg) throws Exception {
 		// TODO Auto-generated method stub
 		
-		if(msg.getHeader().getMsgId() == 1){
+
 			System.out.println(msg.getContent());
-		}
+		
 	}
 }
